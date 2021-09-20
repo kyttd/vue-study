@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-if="errors.length">
+      <ul>
+        <li class="error" v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
+    <form @submit.prevent="validate">
+      氏名
+      <input type="text" v-model="contact.yourName">
+      <br>
+      電話番号
+      <input type="tel" v-model.number="contact.tel">
+      <br>
+      メールアドレス
+      <input type="email" v-model.lazy.trim="contact.email">
+      <br>
+      注意事項に同意する
+      <input type="checkbox" v-model="contact.caution">
+      <br>
+      <input type="submit" value="送信">
+    </form>
+  </div>
+
+  <script>
+  // Vueクラス→インスタンス化(new Vue())
+  let app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        contact: {
+          yourName: '',
+          tel: '',
+          email: '',
+          caution: false
+        },
+        errors: []
+      }
+    },
+    methods: {
+      validate() {
+        this.errors = []
+        if(!this.contact.yourName) {
+          this.errors.push('氏名は必須です')
+        } else if(this.contact.yourName.length > 20) {
+          this.errors.push('氏名は20文字以内で入力してください')
+        }
+        if(!this.contact.caution) {
+          this.errors.push('注意事項にチェックを入れてください')
+        }
+        if(!this.errors.length) {
+          console.log('送信可能')
+        }
+      }
+    }
+  })
+  </script>
+</body>
+
+</html>

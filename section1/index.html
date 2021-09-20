@@ -49,7 +49,30 @@
         },
         isActive: true,
         price: 1,
-        number: 1
+        number: 1,
+        books: [
+          {
+            id: 1,
+            title: '風の歌を聴け',
+            author: '村上春樹',
+            url: 'https://www.amazon.co.jp/%E9%A2%A8%E3%81%AE%E6%AD%8C%E3%82%92%E8%81%B4%E3%81%91-%E8%AC%9B%E8%AB%87%E7%A4%BE%E6%96%87%E5%BA%AB-%E6%9D%91%E4%B8%8A-%E6%98%A5%E6%A8%B9/dp/4062748703'
+          },
+          {
+            id: 2,
+            title: 'こころ',
+            author: '夏目漱石',
+            url: 'https://www.amazon.co.jp/%E3%81%93%E3%81%93%E3%82%8D-%E6%96%B0%E6%BD%AE%E6%96%87%E5%BA%AB-%E5%A4%8F%E7%9B%AE-%E6%BC%B1%E7%9F%B3/dp/4101010137/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=%E3%81%93%E3%81%93%E3%82%8D&m=AN1VRQENFRJN5&qid=1632062833&refinements=p_6%3AAN1VRQENFRJN5&s=books&sr=1-1'
+          },
+          {
+            id: 3,
+            title: 'キッチン',
+            author: '吉本ばなな',
+            url: 'https://www.amazon.co.jp/%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3-%E5%90%89%E6%9C%AC%E3%81%B0%E3%81%AA%E3%81%AA-ebook/dp/B00FXNL4BS/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=3E49ACKD0LF1B&dchild=1&keywords=%E3%82%AD%E3%83%83%E3%83%81%E3%83%B3+%E5%90%89%E6%9C%AC%E3%81%B0%E3%81%AA%E3%81%AA&m=AN1VRQENFRJN5&qid=1632062892&refinements=p_6%3AAN1VRQENFRJN5&s=books&sprefix=%E3%82%AD%E3%83%83%E3%83%81%2Cstripbooks%2C256&sr=1-1'
+          }
+        ],
+        reactiveTest: {
+          name: 'リアクティブテスト'
+        }
       }
     },
     methods: {},
@@ -58,6 +81,14 @@
         return this.number * this.price
       },
       totalPriceArrow: app => app.number * app.price
+    },
+    watch: {
+      books: {
+        handler() {
+          console.log('変更されました')
+        },
+        deep: true
+      }
     }
   })
   </script>
